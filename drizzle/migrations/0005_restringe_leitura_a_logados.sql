@@ -1,0 +1,13 @@
+DROP POLICY IF EXISTS "comentarios leitura" ON public.comentarios;
+CREATE POLICY "comentarios leitura" ON public.comentarios FOR SELECT TO authenticated USING (auth.uid() IS NOT NULL);
+DROP POLICY IF EXISTS "posts publicos" ON public.posts;
+CREATE POLICY "posts publicos" ON public.posts FOR SELECT TO authenticated USING (auth.uid() IS NOT NULL);
+DROP POLICY IF EXISTS "academias publicas" ON public.academias;
+CREATE POLICY "academias publicas" ON public.academias FOR SELECT TO authenticated USING (auth.uid() IS NOT NULL);
+DROP POLICY IF EXISTS "perfis publicos" ON public.profiles;
+CREATE POLICY "perfis publicos" ON public.profiles FOR SELECT TO authenticated USING (auth.uid() IS NOT NULL);
+DROP POLICY IF EXISTS "curtidas publicas" ON public.curtidas;
+CREATE POLICY "curtidas publicas" ON public.curtidas FOR SELECT TO authenticated USING (auth.uid() IS NOT NULL);
+DROP POLICY IF EXISTS "seguidores leitura" ON public.seguidores;
+CREATE POLICY "seguidores leitura" ON public.seguidores FOR SELECT TO authenticated USING (auth.uid() IS NOT NULL);
+REVOKE SELECT ON public.comentarios, public.posts, public.academias, public.profiles, public.curtidas, public.seguidores FROM anon;

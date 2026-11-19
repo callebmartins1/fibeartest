@@ -1,0 +1,2 @@
+ALTER TABLE public.posts ADD COLUMN media_tipo text NOT NULL DEFAULT 'image' CHECK (media_tipo IN ('image', 'video'));
+ALTER TABLE public.stories ADD COLUMN media_tipo text NOT NULL DEFAULT 'image' CHECK (media_tipo IN ('image', 'video'));

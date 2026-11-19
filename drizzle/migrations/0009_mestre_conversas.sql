@@ -1,0 +1,13 @@
+CREATE TABLE public.mestre_conversas (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL, titulo text NOT NULL DEFAULT 'Novo treino', created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.mestre_conversas TO authenticated;
+GRANT ALL ON public.mestre_conversas TO service_role;
+ALTER TABLE public.mestre_conversas ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "conversas proprias" ON public.mestre_conversas FOR ALL TO authenticated USING (user_id = (SELECT auth.uid())) WITH CHECK (user_id = (SELECT auth.uid()));
+CREATE INDEX mestre_conversas_user_idx ON public.mestre_conversas(user_id, updated_at DESC);
+CREATE TABLE public.mestre_mensagens (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), conversa_id uuid NOT NULL REFERENCES public.mestre_conversas(id) ON DELETE CASCADE, user_id uuid NOT NULL, role text NOT NULL CHECK (role IN ('user','assistant')), parts jsonb NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT ON public.mestre_mensagens TO authenticated;
+GRANT ALL ON public.mestre_mensagens TO service_role;
+ALTER TABLE public.mestre_mensagens ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "mensagens proprias ler" ON public.mestre_mensagens FOR SELECT TO authenticated USING (user_id = (SELECT auth.uid()) AND EXISTS (SELECT 1 FROM public.mestre_conversas c WHERE c.id = conversa_id AND c.user_id = (SELECT auth.uid())));
+CREATE POLICY "mensagens proprias criar" ON public.mestre_mensagens FOR INSERT TO authenticated WITH CHECK (user_id = (SELECT auth.uid()) AND EXISTS (SELECT 1 FROM public.mestre_conversas c WHERE c.id = conversa_id AND c.user_id = (SELECT auth.uid())));
+CREATE INDEX mestre_mensagens_conversa_idx ON public.mestre_mensagens(conversa_id, created_at);

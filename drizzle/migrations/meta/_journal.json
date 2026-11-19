@@ -1,0 +1,83 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793071840312,
+      "tag": "0000_migration",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793074608621,
+      "tag": "0001_social_stories_comments_gym_profiles",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793125119794,
+      "tag": "0002_perfil_fit_seguidores_termos",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793281695902,
+      "tag": "0003_media_types_posts_stories",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793322817713,
+      "tag": "0004_academias_reais_agudos",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1793323234065,
+      "tag": "0005_restringe_leitura_a_logados",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793323337295,
+      "tag": "0006_posts_storage_leitura_propria",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1793560347709,
+      "tag": "0007_mensagens_privadas",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1793882329329,
+      "tag": "0008_salvos_notificacoes",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1794311220808,
+      "tag": "0009_mestre_conversas",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1794850622489,
+      "tag": "0010_perfil_faixa",
+      "breakpoints": true
+    }
+  ]
+}

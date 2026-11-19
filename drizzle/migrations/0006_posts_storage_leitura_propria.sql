@@ -1,0 +1,2 @@
+DROP POLICY IF EXISTS "posts imagens publicas" ON storage.objects;
+CREATE POLICY "posts imagens leitura propria" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'posts' AND (storage.foldername(name))[1] = (select auth.uid()::text));

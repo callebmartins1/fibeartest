@@ -1,0 +1,1 @@
+ALTER TABLE public.profiles ADD COLUMN faixa text CHECK (faixa IS NULL OR faixa IN ('branca','cinza','amarela','laranja','verde','azul','roxa','marrom','preta','iniciante','intermediario','avancado'));
